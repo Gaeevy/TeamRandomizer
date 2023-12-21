@@ -4,13 +4,16 @@ from dataclasses import dataclass
 
 players_dict = {
     # "Martin Fulier": 100,
+    "Aleksanrd": 100,
+    "kirill s": 100,
     "Максим Франчук": 90,
     "Alexey Kalinin": 90,
-    "Pavlo": 85,
-    # "Misha Liamtsau": 80,
-    "Артем": 85,
-    "Alex Dyachkov": 85,
-    "Stepan": 75,
+    # "Pavlo": 85,
+    # "Yaugen": 80,
+    "Misha Liamtsau": 80,
+    "Артем": 80,
+    # "Alex Dyachkov": 85,
+    # "Stepan": 75,
     "Vlad Goenko": 70,
     "Андрей Ладутько": 70,
     # "alext tro": 70,
@@ -19,21 +22,21 @@ players_dict = {
     "Влад": 70,
     "Evgeny": 65,
     "Alex": 65,
-    "Nishan": 60,
+    "bitdrop228": 60,
+    # "Nishan": 60,
+    # "baitman": 70,
     # "Kirill B": 55,
     "Bitcoin Garant": 30,
     "Роман": 35,
     # "Yury S": 30,
     # "Hayyim Vital": 30,
-    # "Yaugen": 80,
-    # "Aleksanrd": 100,
     # "Сергей": 70,
     # "Всеволод": 70,
 }
 
 to_df = []
 for player, score in players_dict.items():
-    noise_degree = 0.07
+    noise_degree = 0.03
     noise = np.random.uniform(1-noise_degree, 1+noise_degree)
     to_df.append({"name": player, "score": score * noise})
 df = pd.DataFrame(to_df).sort_values(by="score", ascending=False)
@@ -93,7 +96,6 @@ class Round:
             return self._players.pop(-1 if strongest_first else 0)
         else:
             raise IndexError("No players left in the round")
-
 
     def __repr__(self):
         players = [str(player) for player in self._players]
